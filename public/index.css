@@ -98,7 +98,7 @@ footer > p {
 }
 #enter-income{
     position: relative;
-    left:710px;
+    left:650px;
     top:10px;
 }
 .spending-types{
@@ -128,6 +128,11 @@ select {
   height: 25px;
   }
   #date{
+    box-sizing: border-box;
+    padding: 5px;
+    height: 25px;
+  }
+  #income-input{
     box-sizing: border-box;
     padding: 5px;
     height: 25px;
