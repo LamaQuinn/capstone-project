@@ -5,6 +5,11 @@
     font-family: Arial, Helvetica, sans-serif;
     
 }
+#spending-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 #home-page{
     background-image:url('../img/3.jpg') ;
     background-size: cover; 
@@ -91,15 +96,17 @@ footer > p {
     left:615px;
     font-size: 50px;
 }
-
+#list{
+     color: white;
+    font-family: 'Quicksand', sans-serif;
+    position: relative;
+    left:600px;
+    bottom:40px;
+    font-size: 30px;
+}
 #label1{
     color:white;
     font-family: 'Quicksand', sans-serif;
-}
-#enter-income{
-    position: relative;
-    left:650px;
-    top:10px;
 }
 .spending-types{
     font-family: 'Quicksand', sans-serif;
@@ -109,19 +116,17 @@ select {
     color: #333;
     border: 1px solid #ccc;
     padding: 5px;
-    border-radius: 4px;
-   
+    border-radius: 4px; 
   }
   .options {
     display: flex;
     align-items: center;
     display: inline-block;
-    position: relative;
-    left:680px;
-    top:20px;
+    
+
    
   }
-  #enter-money{
+  .money1{
     box-sizing: border-box;
   width: 200px;
   padding: 5px;
@@ -137,7 +142,7 @@ select {
     padding: 5px;
     height: 25px;
   }
-  #add-spending{
+  .btn{
     background-color: #007BFF; 
     color: #fff; 
     padding: 10px 20px; 
@@ -147,12 +152,13 @@ select {
     font-size: 10px; 
     transition: background-color 0.3s ease-in-out; 
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    
   }
   #addMoreSpendings{
     font-size: 50px;
     position: relative;
-    left:200px;
-    top: 10px;
+    left:850px;
+    top: 20px;
     background-color: transparent; 
     border: none; 
     color: #ffffff; 
@@ -164,3 +170,18 @@ select {
   #listOfBudgets{
     background-color: rgb(30,43,45);
   }
+.labels{
+  color: white;
+}
+
+#input-container{
+  position: relative;
+  left:590px;
+  box-sizing: border-box;
+  padding: 5px;
+  height: 16px;
+}
+
+.inputs{
+  height: 16px;
+}

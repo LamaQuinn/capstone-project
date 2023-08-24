@@ -24,7 +24,7 @@
 
     </div>
 
-    <form action="">
+    <div id="spending-form">
 
         <div id="enter-income">
         <label id="label1">Please enter your montly income:</label> 
@@ -32,7 +32,8 @@
         </div>
     
         <div class="options">
-        <select name="spendingTypes" id="spendings" style=" margin-right: 10px;">
+            <div class="spending-entry" >
+        <select name="spendingTypes" id="spendings=0" style=" margin-right: 10px;">
             <option  value="none" selected disabled hidden>Select an Option</option>
             <option  value="Housing">Housing</option>
             <option  value="Utility">Utility</option>
@@ -40,17 +41,12 @@
             <option  value="Food">Food</option>
             <option  value="Savings">Savings</option>
             <option  value="Others">Others</option>
-        </select><input type="text" id="enter-money" placeholder="Enter amount of money in dollars" style="padding-left: 10px;"  >  <button id="add-spending"> Add</button> <br>
-        <button id="addMoreSpendings"> + </button>
+        </select><input type="text" id="enter-money=0" class="money1" placeholder="Enter amount of money in dollars" style="padding-left: 10px;"  >  <button id="add-spending=0" class="btn"> Add</button> <br>
+    </div>
     </div>
     
-    </form> 
-    
-
-
-
-
-    
+</div> 
+    <button id="addMoreSpendings"> + </button>
     <footer>
         <p>© 2023 Laman Ismayilova</p>
      </footer>
