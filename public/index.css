@@ -176,7 +176,7 @@ select {
 
 #input-container{
   position: relative;
-  left:590px;
+  left:500px;
   box-sizing: border-box;
   padding: 5px;
   height: 16px;
@@ -184,4 +184,25 @@ select {
 
 .inputs{
   height: 16px;
+}
+
+.input-row {
+  display: flex;
+  gap:10px;
+  margin-bottom: 10px; 
+}
+
+
+.input-field {
+  margin-right: 10px; 
+}
+span{
+  color: white;
+  font-size: 15px;
+}
+p{
+  color:white;
+  font-family: 'Quicksand', sans-serif;
+  position: relative;
+  left:730px;
 }

@@ -1,11 +1,4 @@
 const db = require('../database')
-//   CREATE TABLE spendings(
-//     id SERIAL PRIMARY KEY,
-//     income INT,
-//     selected_option VARCHAR(255),
-//     amount_money INT,
-//     date DATE
-//  )
 module.exports = {
     addSpendings:(req,res)=>{
         const {income,selected_option,amount_money,date}=req.body
@@ -38,5 +31,30 @@ module.exports = {
         .then((dbRes)=>{
             res.status(200).send(dbRes[0])
         })
+    },
+    deleteSpendings:(req,res)=>{
+        let{id}=req.params
+        db.query(`DELETE FROM spendings WHERE id=${id};
+        SELECT *FROM spendings;
+        `)
+        .then((dbRes)=>{
+            res.status(200).send(dbRes[0])
+        })
+    },
+    updateSpendings:(req,res)=>{
+    const { id } = req.params;
+    const { income, selected_option, amount_money, date } = req.body;
+    db.query(`
+    UPDATE spendings
+    SET income='${income}',
+        selected_option='${selected_option}',
+        amount_money='${amount_money}',
+        date='${date}'
+    WHERE id=${id}
+    RETURNING *;
+`)
+    .then((dbRes)=>{
+        res.status(200).send(dbRes[0])
+    })
     }
 }
