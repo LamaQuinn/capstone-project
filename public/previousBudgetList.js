@@ -43,34 +43,41 @@
                         window.location.reload();
                     });
             }
-            
-            const updateSpendings = (id, amountInput, optionInput, dateInput, incomeInput) => {
-                let body = {
-                    income: incomeInput.value,
-                    amount_money: amountInput.value,
-                    date: dateInput.value,
-                    selected_option: optionInput.value
-                };
-                axios.put(`http://localhost:4000/api/updateSpendings/${id}`, body)
-                    .then((res) => {
-                        console.log(res.data);
-                        const totalSpending1 = calculateTotalSpending1();
-            
-                        // Check if the total spending exceeds income
-                        if (totalSpending1 > parseFloat(incomeInput.value)) {
-                            console.log(totalSpending1)
-                            window.alert('The sum of spendings exceeds your income. Please adjust your spending.');
-                            return;
-                        }else{
-            
-                        window.alert('Successfully updated!');
-                        }
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-                    
-            }
+   const updateSpendings = (id, amountInput, optionInput, dateInput, incomeInput) => {
+    const newIncome = parseFloat(incomeInput.value);
+    const newAmount = parseFloat(amountInput.value);
+
+    if (isNaN(newIncome) || isNaN(newAmount)) {
+        window.alert('Please enter valid income and amount values.');
+        return;
+    }
+
+    // Calculate the total spending with the new amount
+    const totalSpending1 = calculateTotalSpending1();
+
+    // Check if the total spending exceeds the new income
+    if (totalSpending1 > newIncome) {
+        window.alert('The updated sum of spendings exceeds your updated income. Please adjust your spending.');
+    } else {
+        // If the total spending does not exceed the income, proceed with the update
+        let body = {
+            income: newIncome,
+            amount_money: newAmount,
+            date: dateInput.value,
+            selected_option: optionInput.value
+        };
+
+        axios.put(`http://localhost:4000/api/updateSpendings/${id}`, body)
+            .then((res) => {
+                console.log(res.data);
+                window.alert('Successfully updated!');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+}
+
             
             function extractUniqueMonthNames(spendings) {
                 const uniqueMonthNames = new Set();
@@ -170,7 +177,7 @@ function displaySpendingsForMonth(spendings, selectedMonth) {
     inputContainer.innerHTML = ''; // Clear previous content
     
     if (selectedMonth === '') {
-        chartContainer.style.display = 'block'; // Display the chart
+        chartContainer.style.display = 'none'; // Display the chart
         // Display all spendings
         spendings.forEach((spending) => {
             const inputRow = createInputRow(spending,false);
@@ -209,18 +216,25 @@ function displaySpendings() {
             const monthSelect = generateMonthSelect(uniqueMonths);
             const container = document.getElementById('month-select-container');
             container.innerHTML = ''; // Clear previous content
-            container.appendChild(monthSelect);
+            
 
-            // Call the function to display spendings for the selected month
-            const selectedMonth = monthSelect.value;
-            displaySpendingsForMonth(spendings, selectedMonth);
-
-            monthSelect.addEventListener('change', () => {
-                const selectedMonth = monthSelect.value;
-
+            if (spendings.length === 0) {
+                const message = document.createElement('p');
+                message.textContent = 'No spendings data available.';
+                container.appendChild(message);
+            } else {
                 // Call the function to display spendings for the selected month
+                container.appendChild(monthSelect);
+                const selectedMonth = monthSelect.value;
                 displaySpendingsForMonth(spendings, selectedMonth);
-            });
+
+                monthSelect.addEventListener('change', () => {
+                    const selectedMonth = monthSelect.value;
+
+                    // Call the function to display spendings for the selected month
+                    displaySpendingsForMonth(spendings, selectedMonth);
+                });
+            }
         })
         .catch((error) => {
             console.log(error);
