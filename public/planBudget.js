@@ -25,30 +25,53 @@ const addSpendingEntry = () => {
     addBtn.addEventListener('click',addSpendings)
     global++
 };
+function calculateTotalSpending() {
+    const amountMoneyInputs = document.querySelectorAll('.money1');
+    let totalSpending = 0;
+
+    amountMoneyInputs.forEach((input) => {
+        const amount = parseFloat(input.value);
+        if (!isNaN(amount)) {
+            totalSpending += amount;
+        }
+    });
+
+    return totalSpending;
+}
 
 const addSpendings = (e) => {
     console.log(e.target.id.split('=')[1])
     const eventId=e.target.id.split('=')[1]
     const options = document.getElementById(`spendings=${eventId}`)
     const amountMoney=document.getElementById(`enter-money=${eventId}`)
-    
+    const totalSpending = calculateTotalSpending();
+    if (totalSpending > parseFloat(enterIncome.value)) {
+        window.alert('The sum of spendings exceeds your income. Please adjust your spending.');
+        return;
+    }else{
     let newSpending = {
         income: enterIncome.value,
         selected_option: options.value,
         amount_money: amountMoney.value,
         date: date.value,
     };
+
     console.log(newSpending);
+
     axios
         .post('http://localhost:4000/api/addSpendings', newSpending)
         .then((res) => {
             console.log(res.data);
             window.alert('Your savings have been added successfully!');
         })
+    
         .catch((error) => {
             console.log(error);
         });
+    }
 };
+
+
 
 addMoreSpendingsButton.addEventListener('click', addSpendingEntry);
 optionsDiv.addEventListener('click',addSpendings)

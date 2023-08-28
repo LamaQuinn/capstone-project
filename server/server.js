@@ -6,6 +6,7 @@ const seed = require('./seed')
 const {addSpendings,getSpendings,deleteSpendings,updateSpendings}=require('./controllers/spendings')
 
 
+
 app.use(express.json())
 app.use(cors())
 

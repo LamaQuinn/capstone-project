@@ -100,7 +100,7 @@ footer > p {
      color: white;
     font-family: 'Quicksand', sans-serif;
     position: relative;
-    left:600px;
+    left:650px;
     bottom:40px;
     font-size: 30px;
 }
@@ -205,4 +205,9 @@ p{
   font-family: 'Quicksand', sans-serif;
   position: relative;
   left:730px;
+}
+#month-select-container{
+  position: relative;
+  left:830px;
+  bottom: 20px;
 }
