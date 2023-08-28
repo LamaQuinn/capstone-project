@@ -15,10 +15,12 @@
     background-size: cover; 
     background-repeat: no-repeat;
     background-attachment: fixed; 
+    overflow: hidden;
   
 }
 #plan-budget{
     background-color: rgb(30,43,45);
+    overflow: hidden;
 }
 main{
     position: relative;
@@ -169,6 +171,7 @@ select {
   }
   #listOfBudgets{
     background-color: rgb(30,43,45);
+    overflow: hidden;
   }
 .labels{
   color: white;
@@ -210,4 +213,31 @@ p{
   position: relative;
   left:830px;
   bottom: 20px;
+}
+#chart-container{
+  /* position:relative; */
+  z-index: 2;
+
+  width: 600px; 
+  height: 400px;
+  margin: 0 auto;
+  margin-top: 200px;
+  /* top:200px; */
+
+  
+}
+#spendings-list{
+  /* position:relative; */
+  z-index: 1;
+}
+
+#spending-chart {
+  max-width: 100%; 
+  max-height: 100%;
+}
+#center-content{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+
 }

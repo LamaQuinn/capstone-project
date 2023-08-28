@@ -33,6 +33,7 @@ function calculateTotalSpending() {
         const amount = parseFloat(input.value);
         if (!isNaN(amount)) {
             totalSpending += amount;
+            console.log(totalSpending)
         }
     });
 

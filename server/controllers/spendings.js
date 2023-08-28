@@ -26,7 +26,7 @@ module.exports = {
     getSpendings:(req,res)=>{
         db.query(`
         SELECT *FROM spendings
-        ORDER BY date ASC;
+        ORDER BY date DESC;
         `)
         .then((dbRes)=>{
             res.status(200).send(dbRes[0])
