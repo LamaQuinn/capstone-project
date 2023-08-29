@@ -8,6 +8,6 @@ PostgreSQL,
 Axios
 
 # Features 
-Add data
-Delete data
+Add data,
+Delete data,
 Update data
