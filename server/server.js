@@ -8,6 +8,7 @@ const express=require('express')
 const cors=require('cors')
 const db=require('./database')
 const app = express()
+const path=require('path')
 const seed = require('./seed')
 const {addSpendings,getSpendings,deleteSpendings,updateSpendings}=require('./controllers/spendings')
 
@@ -15,8 +16,11 @@ const {addSpendings,getSpendings,deleteSpendings,updateSpendings}=require('./con
 
 app.use(express.json())
 app.use(cors())
-app.use(express.static(__dirname + '/public'))
-
+app.use(express.static(path.resolve(__dirname,'../public')))
+// app.use(express.static(path.resolve(__dirname,'../img')))
+app.get('/',(req,res)=> {
+  res.sendFile(path.resolve(__dirname,'../public/index.html'))
+})
 app.post('/api/seed',seed)
 app.post('/api/addSpendings',addSpendings)
 app.get('/api/getSpendings',getSpendings)
