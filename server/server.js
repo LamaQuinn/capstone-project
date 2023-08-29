@@ -15,7 +15,7 @@ const {addSpendings,getSpendings,deleteSpendings,updateSpendings}=require('./con
 
 app.use(express.json())
 app.use(cors())
-
+app.use(express.static(__dirname,'/public'))
 
 app.post('/api/seed',seed)
 app.post('/api/addSpendings',addSpendings)
