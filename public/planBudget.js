@@ -69,7 +69,7 @@ const addSpendings = (e) => {
         console.log(newSpending);
 
         axios
-            .post('http://localhost:4000/api/addSpendings', newSpending)
+            .post('/api/addSpendings', newSpending)
             .then((res) => {
                 console.log(res.data);
                 window.alert('Your savings have been added successfully!');

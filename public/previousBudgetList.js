@@ -36,7 +36,7 @@
             }
             
             const deleteSpendings = (id) => {
-                axios.delete(`http://localhost:4000/api/deleteSpendings/${id}`)
+                axios.delete(`/api/deleteSpendings/${id}`)
                     .then((res) => {
                         inputContainer.innerHTML = '';
                         res.data.forEach(displaySpendings);
@@ -67,7 +67,7 @@
             selected_option: optionInput.value
         };
 
-        axios.put(`http://localhost:4000/api/updateSpendings/${id}`, body)
+        axios.put(`/api/updateSpendings/${id}`, body)
             .then((res) => {
                 console.log(res.data);
                 window.alert('Successfully updated!');
@@ -209,7 +209,7 @@ function displaySpendingsForMonth(spendings, selectedMonth) {
 }
 
 function displaySpendings() {
-    axios.get('http://localhost:4000/api/getSpendings')
+    axios.get('/api/getSpendings')
         .then((res) => {
             const spendings = res.data;
             const uniqueMonths = extractUniqueMonthNames(spendings);
