@@ -1,10 +1,10 @@
 const express=require('express')
-var Rollbar = require('rollbar')
-var rollbar = new Rollbar({
-  accessToken: 'ac2a65f5cb904005b01a0b49bbedc067',
-  captureUncaught: true,
-  captureUnhandledRejections: true,
-})
+// var Rollbar = require('rollbar')
+// var rollbar = new Rollbar({
+//   accessToken: 'ac2a65f5cb904005b01a0b49bbedc067',
+//   captureUncaught: true,
+//   captureUnhandledRejections: true,
+// })
 const cors=require('cors')
 const db=require('./database')
 const app = express()
