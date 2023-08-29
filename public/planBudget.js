@@ -40,40 +40,64 @@ function calculateTotalSpending() {
     return totalSpending;
 }
 
+
 const addSpendings = (e) => {
-    console.log(e.target.id.split('=')[1])
-    const eventId=e.target.id.split('=')[1]
-    const options = document.getElementById(`spendings=${eventId}`)
-    const amountMoney=document.getElementById(`enter-money=${eventId}`)
+    const eventId = e.target.id.split('=')[1];
+    const options = document.getElementById(`spendings=${eventId}`);
+    const amountMoney = document.getElementById(`enter-money=${eventId}`);
     const totalSpending = calculateTotalSpending();
-    if (totalSpending > parseFloat(enterIncome.value)) {
+
+    // Check if either options or amountMoney is empty
+    if (!options.value || options.value==='none' || !amountMoney.value ) {
+        window.alert('Please select option and dollar amount.');
+        return;
+    }else if (amountMoney.value==0) {
+        window.alert('Amount money cannot be zero.');
+        return;
+    }
+    else if (totalSpending > parseFloat(enterIncome.value)) {
         window.alert('The sum of spendings exceeds your income. Please adjust your spending.');
         return;
-    }else{
-    let newSpending = {
-        income: enterIncome.value,
-        selected_option: options.value,
-        amount_money: amountMoney.value,
-        date: date.value,
-    };
+    } else {
+        let newSpending = {
+            income: enterIncome.value,
+            selected_option: options.value,
+            amount_money: amountMoney.value,
+            date: date.value,
+        };
 
-    console.log(newSpending);
+        console.log(newSpending);
 
-    axios
-        .post('http://localhost:4000/api/addSpendings', newSpending)
-        .then((res) => {
-            console.log(res.data);
-            window.alert('Your savings have been added successfully!');
-        })
-    
-        .catch((error) => {
-            console.log(error);
-        });
+        axios
+            .post('http://localhost:4000/api/addSpendings', newSpending)
+            .then((res) => {
+                console.log(res.data);
+                window.alert('Your savings have been added successfully!');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 };
 
 
+// Get the current date
+const currentDate = new Date();
+
+// Format the date as 'yyyy-MM-dd'
+const year = currentDate.getFullYear();
+const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed
+const day = String(currentDate.getDate()).padStart(2, '0');
+
+// Create a string in 'yyyy-MM-dd' format
+const formattedDate = `${year}-${month}-${day}`;
+
+// Set the input's value to the formatted date
+document.getElementById('date').value = formattedDate;
+
 
 addMoreSpendingsButton.addEventListener('click', addSpendingEntry);
 optionsDiv.addEventListener('click',addSpendings)
+
+
 

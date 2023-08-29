@@ -260,6 +260,7 @@ function displayChart(spendings, selectedMonth, income) {
     const labels = filteredSpendings.map((spending) => spending.date);
     const data = filteredSpendings.map((spending) => parseFloat(spending.amount_money));
     const income1=filteredSpendings.map((spending)=>spending.income)[0];
+    const maxIncomeValue = Math.ceil(income1 / 1000) * 1000;
     console.log(income1)
 
     // Clear the previous chart if it exists
@@ -278,7 +279,7 @@ function displayChart(spendings, selectedMonth, income) {
                 data: data,
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
+                borderWidth: 2
             }]
         },
         options: {
@@ -289,7 +290,7 @@ function displayChart(spendings, selectedMonth, income) {
                     ticks:
                     {
                 beginAtZero: true,
-                max:income1,
+                max:maxIncomeValue,
                     },
                    
                     title: {
@@ -309,3 +310,4 @@ function displayChart(spendings, selectedMonth, income) {
 }
  
 displaySpendings()
+
